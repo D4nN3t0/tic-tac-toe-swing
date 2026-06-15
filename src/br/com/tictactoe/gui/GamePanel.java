@@ -28,30 +28,32 @@ public class GamePanel extends JPanel implements ActionListener {
 
     public void checkWinner() {
         if (checkLine(0, 1, 2)) {
-            System.out.println(btn[0].getText() + " venceu!");
-            gameOver = true;
+            showWinner(0);
         } else if (checkLine(3, 4, 5)) {
-            System.out.println(btn[3].getText() + " venceu!");
-            gameOver = true;
+            showWinner(3);
         } else if (checkLine(6, 7, 8)) {
-            System.out.println(btn[6].getText() + " venceu!");
-            gameOver = true;
+            showWinner(6);
         } else if (checkLine(0, 3, 6)) {
-            System.out.println(btn[0].getText() + " venceu!");
-            gameOver = true;
+            showWinner(0);
         } else if (checkLine(1, 4, 7)) {
-            System.out.println(btn[1].getText() + " venceu!");
-            gameOver = true;
+            showWinner(1);
         } else if (checkLine(2, 5, 8)) {
-            System.out.println(btn[2].getText() + " venceu!");
-            gameOver = true;
+            showWinner(2);
         } else if (checkLine(0, 4, 8)) {
-            System.out.println(btn[0].getText() + " venceu!");
-            gameOver = true;
+            showWinner(0);
         } else if (checkLine(2, 4, 6)) {
-            System.out.println(btn[2].getText() + " venceu!");
-            gameOver = true;
+           showWinner(2);
         }
+    }
+
+    public void showWinner(int position) {
+        JOptionPane.showMessageDialog(
+                null,
+                btn[position].getText() + " venceu!",
+                "Fim de jogo",
+                JOptionPane.INFORMATION_MESSAGE
+        );
+        gameOver = true;
     }
 
     public boolean checkLine(int a, int b, int c) {
