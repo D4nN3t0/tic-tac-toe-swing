@@ -76,7 +76,7 @@ src
 <p>Abaixo está uma captura de tela da aplicação em execução, demonstrando a interface gráfica desenvolvida com Java Swing e o sistema de reinicialização da partida.</p>
 
 <p align="center">
-  <img src="images/tic-tac-toe-preview.png" alt="Tic-Tac-Toe Preview" width="500"/>
+  <img src="images/tic-tac-toe-preview.PNG" alt="Tic-Tac-Toe Preview" width="493"/>
 </p>
 
 ---
