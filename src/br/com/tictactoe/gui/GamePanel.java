@@ -54,6 +54,19 @@ public class GamePanel extends JPanel implements ActionListener {
                 JOptionPane.INFORMATION_MESSAGE
         );
         gameOver = true;
+        showRestartDialog();
+    }
+
+    public void showDraw() {
+        JOptionPane.showMessageDialog(
+                null,
+                "Houve um empate!",
+                "Fim de jogo",
+                JOptionPane.INFORMATION_MESSAGE
+        );
+
+        gameOver = true;
+        showRestartDialog();
     }
 
     public void checkDraw() {
@@ -65,8 +78,27 @@ public class GamePanel extends JPanel implements ActionListener {
             }
         }
         if (isBoardFull) {
-            JOptionPane.showMessageDialog(null, "Houve um Empate!", "Fim de jogo", JOptionPane.INFORMATION_MESSAGE);
-            gameOver = true;
+            showDraw();
+        }
+    }
+
+    public void resetGame() {
+        for (JButton lines : btn) {
+            lines.setText("");
+        }
+        currentPlayer = playerX;
+        gameOver = false;
+    }
+
+    public void showRestartDialog() {
+        int option = JOptionPane.showConfirmDialog(
+                null,
+                "Deseja jogar novamente?",
+                "Fim de Jogo!",
+                JOptionPane.YES_NO_OPTION);
+
+        if (option == JOptionPane.YES_OPTION) {
+            resetGame();
         }
     }
 
