@@ -42,7 +42,7 @@ public class GamePanel extends JPanel implements ActionListener {
         } else if (checkLine(0, 4, 8)) {
             showWinner(0);
         } else if (checkLine(2, 4, 6)) {
-           showWinner(2);
+            showWinner(2);
         }
     }
 
@@ -56,10 +56,32 @@ public class GamePanel extends JPanel implements ActionListener {
         gameOver = true;
     }
 
+    public void checkDraw() {
+        boolean isBoardFull = true;
+        for (JButton lines : btn) {
+            if (lines.getText().isEmpty()) {
+                isBoardFull = false;
+                break;
+            }
+        }
+        if (isBoardFull) {
+            JOptionPane.showMessageDialog(null, "Houve um Empate!", "Fim de jogo", JOptionPane.INFORMATION_MESSAGE);
+            gameOver = true;
+        }
+    }
+
     public boolean checkLine(int a, int b, int c) {
         return !btn[a].getText().isEmpty() &&
                 btn[a].getText().equals(btn[b].getText()) &&
                 btn[b].getText().equals(btn[c].getText());
+    }
+
+    private void switchPlayer() {
+        if (currentPlayer == playerX) {
+            currentPlayer = playerO;
+        } else {
+            currentPlayer = playerX;
+        }
     }
 
     @Override
@@ -70,12 +92,13 @@ public class GamePanel extends JPanel implements ActionListener {
         }
         if (clickedButton.getText().isEmpty()) {
             clickedButton.setText(currentPlayer.getSymbol());
-            if (currentPlayer == playerX) {
-                currentPlayer = playerO;
-                checkWinner();
-            } else {
-                currentPlayer = playerX;
-                checkWinner();
+            checkWinner();
+            if (!gameOver) {
+                checkDraw();
+            }
+
+            if (!gameOver) {
+                switchPlayer();
             }
         }
     }
